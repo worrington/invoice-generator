@@ -6,86 +6,70 @@ defineEmits(['update:modelValue'])
 </script>
 
 <template>
-  <section aria-labelledby="client-section" class="space-y-6">
-    <!-- Client Name -->
+  <section aria-labelledby="company-section" class="space-y-6">
     <BaseInput
       v-model="modelValue.clientName"
-      label="CLIENT NAME"
-      id="clientName"
-      textColor="text-blue-700"
-      placeholderColor="placeholder-blue-700"
+      label="CLIENT COMPANY"
+      id="clientcompanyName"
+      textColor="text-blue-00"
+      placeholderColor="placeholder-blue-800"
       classes="font-bold text-lg uppercase tracking-wide"
       required
     />
 
-    <!-- Name -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 m-0">
-      <BaseInput
-        id="firstName"
-        label="First Name"
-        v-model="modelValue.clientFirstName"
-        required
-      />
-
-      <BaseInput
-        id="lastName"
-        label="Last Name"
-        v-model="modelValue.clientLastName"
-        required
-      />
-    </div>
-
-    <!-- Website -->
     <BaseInput
-      id="website"
+      id="clientfullName"
+      label="Full Name"
+      v-model="modelValue.clientFullName"
+      required
+    />
+
+    <BaseInput
+      id="clientwebsite"
       label="Website"
       v-model="modelValue.clientWebsite"
     />
 
-    <!-- Address -->
     <BaseInput
-      id="address"
+      id="clientaddress"
       label="Address"
       v-model="modelValue.clientAddress"
       required
     />
 
-    <!-- City State Zip -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 m-0">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 m-0">
       <BaseInput
-        id="city"
+        id="clientcity"
         label="City"
         v-model="modelValue.clientCity"
         required
       />
 
       <BaseInput
-        id="state"
+        id="clientstate"
         label="State"
         v-model="modelValue.clientState"
         required
       />
 
       <BaseInput
-        id="zip"
+        id="clientzip"
         label="ZIP Code"
         v-model="modelValue.clientZip"
         required
       />
+
+      <BaseInput
+        id="clientcountry"
+        label="Country"
+        v-model="modelValue.clientCountry"
+        required
+      />
     </div>
 
-    <!-- Country -->
-    <BaseInput
-      id="country"
-      label="Country"
-      v-model="modelValue.clientCountry"
-      required
-    />
-
-    <!-- Contact -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 m-0">
       <BaseInput
-        id="phone"
+        id="clientphone"
         type="tel"
         label="Phone"
         v-model="modelValue.clientPhone"
@@ -93,7 +77,7 @@ defineEmits(['update:modelValue'])
       />
 
       <BaseInput
-        id="email"
+        id="clientemail"
         type="email"
         label="Email"
         v-model="modelValue.clientEmail"

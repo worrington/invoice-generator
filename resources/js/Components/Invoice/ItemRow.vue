@@ -1,44 +1,49 @@
 <script setup>
-  const props = defineProps(['item'])
-  const emit = defineEmits(['remove','update'])
-
-  function updateField(field, value) {
-    emit('update', { ...props.item, [field]: value })
-  }
+  defineProps(["item", "index"])
+  defineEmits(["remove", "update"])
 </script>
 
 <template>
-  <tr>
-    <td>{{ item.id }}</td>
-
-    <td>
+  <tr
+    class="bg-white even:bg-slate-50 hover:bg-blue-50 transition rounded-lg group relative"
+  >
+    <td class="px-4 py-3">
       <input
-        :value="item.description"
-        @input="updateField('description',$event.target.value)"
-        class="w-full"
+        type="text"
+        v-model="item.id"
+        class="w-16 text-center bg-transparent focus:outline-none"
       />
     </td>
 
-    <td>
+    <td class="px-4 py-3">
       <input
-        type="number"
-        :value="item.quantity"
-        @input="updateField('quantity',+$event.target.value)"
-        class="w-20"
+        v-model="item.description"
+        class="w-full bg-transparent focus:outline-none"
       />
     </td>
 
-    <td>
+    <td class="px-4 py-3 text-center">
       <input
         type="number"
-        :value="item.price"
-        @input="updateField('price',+$event.target.value)"
-        class="w-24"
+        v-model="item.qty"
+        class="w-32 text-center bg-transparent focus:outline-none"
       />
     </td>
 
-    <td>
-      <button @click="$emit('remove')" aria-label="Remove item">❌</button>
+    <td class="px-4 py-3 text-right">
+        <input
+          type="number"
+          v-model="item.price"
+          class="w-32 text-right bg-transparent focus:outline-none"
+        />
     </td>
+
+    <button
+      @click="$emit('remove')"
+      class="opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-700 transition absolute right-0 top-0"
+    >
+      ✕
+    </button>
+
   </tr>
 </template>

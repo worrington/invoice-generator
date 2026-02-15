@@ -7,42 +7,29 @@ defineEmits(['update:modelValue'])
 
 <template>
   <section aria-labelledby="company-section" class="space-y-6">
-    <!-- Company Name -->
     <BaseInput
       v-model="modelValue.companyName"
       label="YOUR COMPANY"
       id="companyName"
-      textColor="text-blue-700"
-      placeholderColor="placeholder-blue-700"
+      textColor="text-blue-00"
+      placeholderColor="placeholder-blue-800"
       classes="font-bold text-lg uppercase tracking-wide"
       required
     />
 
-    <!-- Name -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 m-0">
-      <BaseInput
-        id="firstName"
-        label="First Name"
-        v-model="modelValue.companyFirstName"
-        required
-      />
+    <BaseInput
+      id="fullName"
+      label="Full Name"
+      v-model="modelValue.companyFullName"
+      required
+    />
 
-      <BaseInput
-        id="lastName"
-        label="Last Name"
-        v-model="modelValue.companyLastName"
-        required
-      />
-    </div>
-
-    <!-- Website -->
     <BaseInput
       id="website"
       label="Website"
       v-model="modelValue.companyWebsite"
     />
 
-    <!-- Address -->
     <BaseInput
       id="address"
       label="Address"
@@ -50,8 +37,7 @@ defineEmits(['update:modelValue'])
       required
     />
 
-    <!-- City State Zip -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 m-0">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 m-0">
       <BaseInput
         id="city"
         label="City"
@@ -72,18 +58,16 @@ defineEmits(['update:modelValue'])
         v-model="modelValue.companyZip"
         required
       />
+
+      <BaseInput
+        id="country"
+        label="Country"
+        v-model="modelValue.companyCountry"
+        required
+      />
     </div>
 
-    <!-- Country -->
-    <BaseInput
-      id="country"
-      label="Country"
-      v-model="modelValue.companyCountry"
-      required
-    />
-
-    <!-- Contact -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 m-0">
       <BaseInput
         id="phone"
         type="tel"

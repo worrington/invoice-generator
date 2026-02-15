@@ -5,7 +5,7 @@
 
 <template>
   <textarea
-    class="w-full border p-3"
+    class="space-y-2 border border-gray-300 rounded-lg p-4 w-full"
     rows="4"
     placeholder="Notes"
     :value="modelValue"

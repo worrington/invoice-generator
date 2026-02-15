@@ -4,6 +4,7 @@ import { computed } from 'vue'
 const props = defineProps({
   modelValue: [String, Number],
   label: String,
+  placeholder: String,
   id: String,
   type: {
     type: String,
@@ -17,7 +18,7 @@ const props = defineProps({
   },
   placeholderColor: {
     type: String,
-    default: 'placeholder-gray-400'
+    default: 'placeholder-gray-300'
   },
   classes: {
     type: String,
@@ -38,13 +39,13 @@ const inputBorder = computed(() => {
 
   return hasValue.value
     ? 'border-transparent focus:border-blue-500'
-    : 'border-gray-300 focus:border-blue-500'
+    : 'border-gray-200 focus:border-blue-500'
 })
 </script>
 
 <template>
   <div class="mb-3">
-    <!-- LABEL SOLO SCREEN READER -->
+
     <label :for="id" class="sr-only">
       {{ label }}
       <span v-if="required">*</span>
@@ -54,22 +55,20 @@ const inputBorder = computed(() => {
       :id="id"
       :type="type"
       :value="modelValue"
-      :placeholder="label + (required ? ' *' : '')"
+      :placeholder="(placeholder || label) + (required ? ' *' : '')"
       @input="$emit('update:modelValue', $event.target.value)"
       :required="required"
       :aria-required="required"
       :aria-invalid="error ? 'true' : 'false'"
       :aria-describedby="error ? `${id}-error` : null"
       :class="[
-        'w-full border-b border-gray-300 focus:outline-none transition-colors',
+        'w-full border-b border-gray-200 focus:outline-none transition-colors',
         inputBorder,
         textColor,
         placeholderColor,
         classes
       ]"
     />
-
-    <!-- ERROR -->
     <p
       v-if="error"
       :id="`${id}-error`"
