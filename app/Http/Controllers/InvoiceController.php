@@ -8,19 +8,17 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
 {
-    public function calculate(StoreInvoiceRequest $request)
+    public function validateInvoice(StoreInvoiceRequest $request)
     {
         $data = $request->all();
 
-        $totals = InvoiceCalculator::calculate($data);
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
 
-        return response()->json($totals);
-    }
+            $base64 = base64_encode(file_get_contents($file->getRealPath()));
 
-
-    public function pdf(StoreInvoiceRequest $request)
-    {
-        $data = $request->validated();
+            $data['logo'] = 'data:' . $file->getMimeType() . ';base64,' . $base64;
+        }
 
         $totals = InvoiceCalculator::calculate($data);
 
@@ -29,6 +27,7 @@ class InvoiceController extends Controller
             'totals' => $totals
         ]);
 
-        return $pdf->download('invoice.pdf');
+        return $pdf->stream();
     }
+
 }

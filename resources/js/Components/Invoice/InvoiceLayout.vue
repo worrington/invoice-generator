@@ -39,7 +39,7 @@ defineEmits([
         </div>
 
         <div class="md:col-span-4 col-span-12 order-1 md:order-2">
-          <LogoUploader v-model="form.logo" />
+          <LogoUploader v-model="form.logo" :errors="errors"/>
           <InvoiceMeta v-model="form.meta" :errors="errors" />
         </div>
       </div>

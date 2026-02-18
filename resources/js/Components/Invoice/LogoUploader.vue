@@ -2,14 +2,18 @@
   import { ref, onBeforeUnmount, watch } from 'vue'
 
   const props = defineProps({
-    modelValue: File | null
+    modelValue: File | null,
+    errors: Object
   })
+
+  const MAX_SIZE = 2 * 1024 * 1024
 
   const emit = defineEmits(['update:modelValue'])
 
   const fileInput = ref(null)
   const preview = ref(null)
   const isDragging = ref(false)
+
 
   function openFileDialog() {
     fileInput.value.click()
@@ -25,6 +29,27 @@
   }
 
   function onChange(e) {
+    const file = e.target.files[0]
+    if (!file) return
+
+    const allowedTypes = [
+      "image/png",
+      "image/jpeg",
+      "image/webp"
+    ]
+
+    if (!allowedTypes.includes(file.type)) {
+      alert("Formant not supported. Please upload a PNG, JPG, JPEG, or WEBP image.")
+      e.target.value = ""
+      return
+    }
+
+    if (file.size > MAX_SIZE) {
+      alert("The image exceeds the maximum size of 2MB")
+      e.target.value = ""
+      return
+    }
+
     handleFile(e.target.files[0])
   }
 
@@ -63,7 +88,7 @@
       ref="fileInput"
       type="file"
       class="hidden"
-      accept="image/*"
+      accept=".png,.jpg,.jpeg,.webp"
       @change="onChange"
       aria-hidden="true"
     />
@@ -115,9 +140,10 @@
           or click to upload
         </p>
         <p class="text-[11px] text-gray-400">
-          PNG, JPG, SVG
+          PNG, JPG, JPEG, WEBP - Max 2MB
         </p>
       </div>
     </div>
   </div>
+  <p class="text-sm text-red-500 mt-1 text-center w-full">{{errors?.['logo']?.[0] ?? null}}</p>
 </template>

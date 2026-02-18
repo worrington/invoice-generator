@@ -9,6 +9,6 @@
     rows="4"
     placeholder="Notes"
     :value="modelValue"
-    @input="$emit('update:modelValue',$event.target.value)"
+    @input="$emit('update:modelValue', $event.target.value)"
   ></textarea>
 </template>

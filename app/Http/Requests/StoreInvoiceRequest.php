@@ -48,6 +48,8 @@ class StoreInvoiceRequest extends FormRequest
             'meta.invoiceNumber' => ['required','string'],
             'meta.invoiceDate' => ['required','date'],
             'meta.dueDate' => ['required','date','after_or_equal:meta.invoiceDate'],
+
+            'logo' => ['required', 'image', 'mimes:jpg,jpeg,png,webp','max:2048'],
         ];
     }
 
@@ -93,6 +95,12 @@ class StoreInvoiceRequest extends FormRequest
             'meta.invoiceDate.required' => 'Invoice date is required',
             'meta.dueDate.required' => 'Due date is required',
             'meta.dueDate.after_or_equal' => 'Due date must be after or equal to the invoice date',
+
+            'logo.uploaded' => 'The logo failed to upload. Review the file size.',
+            'logo.image' => 'Logo must be an image file',
+            'logo.max' => 'Logo must not exceed 2MB in size',
+            'logo.required' => 'Logo is required',
+            'logo.mimes' => 'Logo must be a file of type: jpg, jpeg, png, webp',
         ];
     }
 
