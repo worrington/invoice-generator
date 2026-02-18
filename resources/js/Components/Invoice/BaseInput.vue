@@ -23,7 +23,10 @@ const props = defineProps({
   classes: {
     type: String,
     default: ''
-  }
+  },
+  min: Number,
+  max: Number,
+  step: Number
 })
 
 defineEmits(['update:modelValue'])
@@ -44,8 +47,7 @@ const inputBorder = computed(() => {
 </script>
 
 <template>
-  <div class="mb-3">
-
+  <div class="">
     <label :for="id" class="sr-only">
       {{ label }}
       <span v-if="required">*</span>
@@ -56,11 +58,19 @@ const inputBorder = computed(() => {
       :type="type"
       :value="modelValue"
       :placeholder="(placeholder || label) + (required ? ' *' : '')"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="$emit(
+        'update:modelValue',
+        type === 'number'
+          ? +$event.target.value
+          : $event.target.value
+      )"
       :required="required"
       :aria-required="required"
       :aria-invalid="error ? 'true' : 'false'"
       :aria-describedby="error ? `${id}-error` : null"
+      :min="type === 'number' ? min : null"
+      :max="type === 'number' ? max : null"
+      :step="type === 'number' ? step : null"
       :class="[
         'w-full border-b border-gray-200 focus:outline-none transition-colors',
         inputBorder,
@@ -69,6 +79,7 @@ const inputBorder = computed(() => {
         classes
       ]"
     />
+
     <p
       v-if="error"
       :id="`${id}-error`"
