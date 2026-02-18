@@ -1,7 +1,11 @@
 <script setup>
-  import { ref, onBeforeUnmount } from 'vue'
+  import { ref, onBeforeUnmount, watch } from 'vue'
 
-  const emit = defineEmits(['update'])
+  const props = defineProps({
+    modelValue: File | null
+  })
+
+  const emit = defineEmits(['update:modelValue'])
 
   const fileInput = ref(null)
   const preview = ref(null)
@@ -17,7 +21,7 @@
     if (preview.value) URL.revokeObjectURL(preview.value)
 
     preview.value = URL.createObjectURL(file)
-    emit('update', file)
+    emit('update:modelValue', file)
   }
 
   function onChange(e) {
@@ -38,10 +42,20 @@
     isDragging.value = false
   }
 
+  watch(() => props.modelValue, (file) => {
+    if (!file) {
+      preview.value = null
+      return
+    }
+
+    preview.value = URL.createObjectURL(file)
+  })
+
   onBeforeUnmount(() => {
     if (preview.value) URL.revokeObjectURL(preview.value)
   })
 </script>
+
 
 <template>
   <div class="w-full aspect-square">
@@ -76,7 +90,7 @@
             : 'border-2 border-dashed border-gray-300 hover:border-blue-400 hover:bg-gray-50'
       ]"
     >
-      <div v-if="preview" class="w-full h-full flex items-center justify-center">
+      <div v-if="preview" class="w-full h-full flex items-start justify-center">
         <img
           :src="preview"
           alt="Company logo preview"

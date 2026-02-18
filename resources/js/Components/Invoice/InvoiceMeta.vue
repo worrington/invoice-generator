@@ -1,47 +1,30 @@
 <script setup>
     import BaseInput from './BaseInput.vue'
 
-    const props = defineProps({
-    modelValue: {
-        type: Object,
-        default: () => ({
-        invoiceNumber: '',
-        invoiceDate: '',
-        dueDate: ''
-        })
-    }
-    })
-
-    const emit = defineEmits(['update:modelValue'])
-
-    function updateField(field, value) {
-    emit('update:modelValue', {
-        ...props.modelValue,
-        [field]: value
-    })
-    }
+    defineProps(['modelValue', 'errors'])
+    defineEmits(['update:modelValue'])
 </script>
 
 <template>
-  <div class="space-y-6 mt-8 w-full max-w-[320px]">
-    <div class="flex items-center justify-between gap-4 m-0">
+  <div class="space-y-4 mt-8 w-full max-w-[320px]">
+    <div class="flex items-center justify-between gap-4">
       <span class="text-gray-600 font-semibold whitespace-nowrap">
         Invoice No:
       </span>
 
       <div class="w-40">
         <BaseInput
-          :modelValue="modelValue.invoiceNumber"
-          @update:modelValue="updateField('invoiceNumber', $event)"
+          v-model="modelValue.invoiceNumber"
           placeholder="#####"
           id="invoiceNumber"
           label="Invoice number"
-          classes="text-right font-semibold"
+          classes=" font-semibold"
+          :error="errors?.['meta.invoiceNumber'] ? errors['meta.invoiceNumber'][0] : null"
         />
       </div>
     </div>
 
-    <div class="flex items-center justify-between gap-4 m-0">
+    <div class="flex items-center justify-between gap-4">
       <span class="text-gray-600 font-semibold whitespace-nowrap">
         Invoice Date:
       </span>
@@ -49,16 +32,16 @@
       <div class="w-40">
         <BaseInput
           type="date"
-          :modelValue="modelValue.invoiceDate"
-          @update:modelValue="updateField('invoiceDate', $event)"
+          v-model="modelValue.invoiceDate"
           id="invoiceDate"
           label="Invoice date"
           classes="text-right font-medium"
+          :error="errors?.['meta.invoiceDate'] ? errors['meta.invoiceDate'][0] : null"
         />
       </div>
     </div>
 
-    <div class="flex items-center justify-between gap-4 m-0">
+    <div class="flex items-center justify-between gap-4">
       <span class="text-gray-600 font-semibold whitespace-nowrap">
         Due Date:
       </span>
@@ -66,11 +49,11 @@
       <div class="w-40">
         <BaseInput
           type="date"
-          :modelValue="modelValue.dueDate"
-          @update:modelValue="updateField('dueDate', $event)"
+          v-model="modelValue.dueDate"
           id="dueDate"
           label="Due date"
           classes="text-right font-medium"
+          :error="errors?.['meta.dueDate'] ? errors['meta.dueDate'][0] : null"
         />
       </div>
     </div>

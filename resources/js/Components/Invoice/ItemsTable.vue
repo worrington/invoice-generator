@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import ItemRow from "./ItemRow.vue"
 
-defineProps(["items", "mode"])
+defineProps(["items", "mode", "errors"])
 const emit = defineEmits([
   "add-item",
   "remove-item",
@@ -24,8 +24,8 @@ function setMode(type) {
     <table class="w-full border-separate border-spacing-y-1">
       <thead class="bg-blue-800 text-white">
         <tr class="text-xs uppercase tracking-wider">
-          <th class="text-left px-4 py-2 min-w-16">ID</th>
-          <th class="text-left px-4 py-2">Description</th>
+          <th class="text-left px-4 py-2">ID</th>
+          <th class="text-left px-4 py-2 w-1/2">Description</th>
 
           <th class="text-center px-4 py-2 w-24 relative">
 
@@ -78,11 +78,17 @@ function setMode(type) {
           :item="item"
           :mode="mode"
           :index="index"
+          :errors="errors"
           @remove="$emit('remove-item', item.id)"
           @update="$emit('update-item', $event)"
         />
       </tbody>
     </table>
+    <p
+      class="text-sm text-red-500 mt-1 w-full text-center"
+    >
+    {{errors?.['items']?.[0] ?? null}}
+  </p>
 
     <button
       @click="$emit('add-item')"

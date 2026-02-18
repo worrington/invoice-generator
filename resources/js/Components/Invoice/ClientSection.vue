@@ -1,87 +1,97 @@
 <script setup>
 import BaseInput from './BaseInput.vue'
 
-defineProps(['modelValue'])
-defineEmits(['update:modelValue'])
+  defineProps(['modelValue', 'errors'])
+  defineEmits(['update:modelValue'])
 </script>
 
 <template>
   <section aria-labelledby="company-section" class="space-y-6">
     <BaseInput
-      v-model="modelValue.clientName"
+      v-model="modelValue.name"
       label="CLIENT COMPANY"
-      id="clientcompanyName"
+      id="companyName"
       textColor="text-blue-00"
       placeholderColor="placeholder-blue-800"
       classes="font-bold text-lg uppercase tracking-wide"
       required
+      :error="errors?.['client.name']?.[0] ?? null"
     />
 
     <BaseInput
-      id="clientfullName"
+      id="fullName"
       label="Full Name"
-      v-model="modelValue.clientFullName"
+      v-model="modelValue.fullName"
       required
+      :error="errors?.['client.fullName']?.[0] ?? null"
     />
 
     <BaseInput
-      id="clientwebsite"
+      id="website"
       label="Website"
-      v-model="modelValue.clientWebsite"
+      v-model="modelValue.website"
+      :error="errors?.['client.website']?.[0] ?? null"
     />
 
     <BaseInput
-      id="clientaddress"
+      id="address"
       label="Address"
-      v-model="modelValue.clientAddress"
+      v-model="modelValue.address"
       required
+      :error="errors?.['client.address']?.[0] ?? null"
     />
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 m-0">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 m-0 space-y-6">
       <BaseInput
-        id="clientcity"
+        id="city"
         label="City"
-        v-model="modelValue.clientCity"
+        v-model="modelValue.city"
         required
+        :error="errors?.['client.city']?.[0] ?? null"
       />
 
       <BaseInput
-        id="clientstate"
+        id="state"
         label="State"
-        v-model="modelValue.clientState"
+        v-model="modelValue.state"
         required
+        :error="errors?.['client.state']?.[0] ?? null"
       />
 
       <BaseInput
-        id="clientzip"
+        id="zip"
         label="ZIP Code"
-        v-model="modelValue.clientZip"
+        v-model="modelValue.zip"
         required
+        :error="errors?.['client.zip']?.[0] ?? null"
       />
 
       <BaseInput
-        id="clientcountry"
+        id="country"
         label="Country"
-        v-model="modelValue.clientCountry"
+        v-model="modelValue.country"
         required
+        :error="errors?.['client.country']?.[0] ?? null"
       />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 m-0">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 m-0 space-y-6">
       <BaseInput
-        id="clientphone"
+        id="phone"
         type="tel"
         label="Phone"
-        v-model="modelValue.clientPhone"
+        v-model="modelValue.phone"
         required
+        :error="errors?.['client.phone']?.[0] ?? null"
       />
 
       <BaseInput
-        id="clientemail"
+        id="email"
         type="email"
         label="Email"
-        v-model="modelValue.clientEmail"
+        v-model="modelValue.email"
         required
+        :error="errors?.['client.email']?.[0] ?? null"
       />
     </div>
 
