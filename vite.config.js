@@ -13,6 +13,12 @@ export default defineConfig({
         tailwindcss(),
         vue(),
     ],
+    build: {
+        ssr: 'resources/js/ssr.js',
+        rollupOptions: {
+            external: ['@inertiajs/server', 'vue'],
+        },
+    },
     server: {
         watch: {
             ignored: ['**/storage/framework/views/**'],

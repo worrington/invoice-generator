@@ -139,7 +139,7 @@
         <p class="text-xs text-gray-500">
           or click to upload
         </p>
-        <p class="text-[11px] text-gray-400">
+        <p class="text-[11px] text-gray-500">
           PNG, JPG, JPEG, WEBP - Max 2MB
         </p>
       </div>

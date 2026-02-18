@@ -11,7 +11,7 @@ defineEmits(['update:modelValue'])
       v-model="modelValue.name"
       label="YOUR COMPANY"
       id="companyname"
-      textColor="text-blue-00"
+      textColor="text-blue-700"
       placeholderColor="placeholder-blue-800"
       classes="font-bold text-lg uppercase tracking-wide"
       required

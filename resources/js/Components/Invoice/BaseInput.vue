@@ -18,7 +18,7 @@ const props = defineProps({
   },
   placeholderColor: {
     type: String,
-    default: 'placeholder-gray-300'
+    default: 'placeholder-gray-500'
   },
   classes: {
     type: String,

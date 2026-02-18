@@ -175,7 +175,7 @@
     <div class="max-w-5xl mx-auto flex justify-end gap-4 mb-4">
       <button
         @click="validateInvoice"
-        class="mt-6 ml-4 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded flex items-center gap-2"
+        class="mt-6 ml-4 bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded flex items-center gap-2"
       >
         <svg
           viewBox="0 0 24 24"
@@ -201,7 +201,7 @@
         :class="[
           'mt-6 ml-4 px-6 py-3 rounded flex items-center gap-2 transition',
           isValidated
-            ? 'bg-blue-600 hover:bg-blue-700 text-white'
+            ? 'bg-blue-700 hover:bg-blue-800 text-white'
             : 'bg-gray-400 text-gray-200 cursor-not-allowed'
         ]">
         <svg

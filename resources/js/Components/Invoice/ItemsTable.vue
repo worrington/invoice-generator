@@ -68,6 +68,7 @@ function setMode(type) {
           </th>
 
           <th class="text-right px-4 py-2 w-32">Price</th>
+          <th>.</th>
         </tr>
       </thead>
 

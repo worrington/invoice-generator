@@ -58,12 +58,14 @@
         />
     </td>
 
-    <button
-      @click="$emit('remove')"
-      class="opacity-0 group-hover:opacity-100 border hover:border-blue-700 border-blue-500 rounded-full text-blue-500 hover:text-blue-700 w-5 h-5 flex justify-center items-center text-sm transition absolute right-0 top-0"
-    >
-      ✕
-    </button>
+    <td class="px-4 py-3 text-right">
+      <button
+        @click="$emit('remove')"
+        class="opacity-0 group-hover:opacity-100 border hover:border-blue-700 border-blue-500 rounded-full text-blue-500 hover:text-blue-700 w-5 h-5 flex justify-center items-center text-sm transition"
+      >
+        ✕
+      </button>
+    </td>
 
   </tr>
 </template>

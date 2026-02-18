@@ -11,7 +11,7 @@ import BaseInput from './BaseInput.vue'
       v-model="modelValue.name"
       label="CLIENT COMPANY"
       id="companyName"
-      textColor="text-blue-00"
+      textColor="text-blue-700"
       placeholderColor="placeholder-blue-800"
       classes="font-bold text-lg uppercase tracking-wide"
       required
