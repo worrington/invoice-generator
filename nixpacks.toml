@@ -1,0 +1,31 @@
+# nixpacks.toml
+# Laravel 12 + Node + Railway
+# Sin base de datos
+
+[phases.setup]
+php_version = "8.4"
+node_version = "20"
+
+[phases.install]
+commands = [
+  "export COMPOSER_ALLOW_SUPERUSER=1",
+  "composer install --no-dev --optimize-autoloader --no-interaction",
+  "npm ci"
+]
+
+[phases.build]
+commands = [
+  "npm run build",
+  "npm run build:ssr",
+  "php artisan config:clear",
+  "php artisan config:cache",
+  "php artisan route:clear",
+  "php artisan view:clear",
+  "php artisan optimize",
+  "chmod -R 777 storage bootstrap/cache"
+]
+
+[phases.start]
+commands = [
+  "php artisan serve --host=0.0.0.0 --port=$PORT"
+]
