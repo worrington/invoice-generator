@@ -3,8 +3,7 @@
 # Sin base de datos
 
 [phases.setup]
-php_version = "8.4"
-node_version = "20"
+nixPkgs = ["php84", "nodejs_20"]
 
 [phases.install]
 commands = [
